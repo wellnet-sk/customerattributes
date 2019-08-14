@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/customerattributes",
+    "type": "magento-module",
+    "license": "OSL-v3.0",
+    "homepage": "",
+    "description": "Customer Attributes - Extra Fields for Registration Form",
+    "authors": [
+    {
+        "name": "Zestard",
+        "email": "support@zestard.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
