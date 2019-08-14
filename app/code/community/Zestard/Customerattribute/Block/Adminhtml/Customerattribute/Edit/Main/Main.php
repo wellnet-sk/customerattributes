@@ -88,6 +88,22 @@ class  Zestard_Customerattribute_Block_Adminhtml_Customerattribute_Edit_Main_Mai
             'value' => $attributeObject->getDefaultValue(),
         ));
 
+        $fieldset->addField('send_register_email', 'select', array(
+            'name' => 'send_register_email',
+            'label' => Mage::helper('eav')->__('Send with Register Email'),
+            'title' => Mage::helper('eav')->__('Send with Register Email'),
+            'note'  => Mage::helper('eav')->__('Send attribute value with register user email'),
+            'values' => $yesno,            
+        ));
+
+        $fieldset->addField('send_order_email', 'select', array(
+            'name' => 'send_order_email',
+            'label' => Mage::helper('eav')->__('Send with Order Email'),
+            'title' => Mage::helper('eav')->__('Send with Order Email'),
+            'note'  => Mage::helper('eav')->__('Send attribute value with Order email'),
+            'values' => $yesno,            
+        ));
+
         $dateFormatIso = Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
         $fieldset->addField('default_value_date', 'date', array(
             'name'   => 'default_value_date',

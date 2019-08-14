@@ -318,9 +318,7 @@ class Zestard_Customerattribute_Adminhtml_CustomerattributeController extends Ma
              }
 
              //filter
-             $data = $this->_filterPostData($data);
-             //print_r($data);
-             //exit;
+             $data = $this->_filterPostData($data);              
              $model->addData($data);
 
              if (!$id) {
@@ -329,7 +327,8 @@ class Zestard_Customerattribute_Adminhtml_CustomerattributeController extends Ma
              }
 
              try {
-                 $model->save();
+                 $model->save();                 
+                 //echo '<pre>';print_r($model->getData());die();            
                  $session->addSuccess(
                      Mage::helper('zestard_customerattribute')->__('The customer attribute has been saved.'));
 

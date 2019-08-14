@@ -18,11 +18,13 @@
         </reference>
 
         <reference name="customer_form_register">
-            <action method="setTemplate"><template>zestard/customerattribute/form/register.phtml</template></action>
+            <action method="setTemplate" ifconfig="zestard_customerattribute/customerattribute_group/enable">
+                <template>zestard/customerattribute/form/register.phtml</template>
+            </action>
         </reference>
 
         <reference name="before_body_end">
-            <block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml"/>
+            <block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml" ifconfig="zestard_customerattribute/customerattribute_group/enable"/>
         </reference>
     </customer_account_create>
 
@@ -34,16 +36,18 @@
         </reference>
 
         <block name="customer_edit">
-            <action method="setTemplate"><template>zestard/customerattribute/form/edit.phtml</template></action>
+            <action method="setTemplate" ifconfig="zestard_customerattribute/customerattribute_group/enable">
+                <template>zestard/customerattribute/form/edit.phtml</template>
+            </action>
         </block>
 
         <reference name="before_body_end">
-            <block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml"/>
+            <block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml" ifconfig="zestard_customerattribute/customerattribute_group/enable"/>
         </reference>
     </customer_account_edit>
     <checkout_onepage_index>
         <reference name="checkout.onepage.billing">
-            <action method="setTemplate">
+            <action method="setTemplate" ifconfig="zestard_customerattribute/customerattribute_group/enable">
                 <template>zestard/customerattribute/checkout/onepage/billing.phtml</template>
             </action>
         </reference>

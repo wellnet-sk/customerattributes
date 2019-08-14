@@ -28,6 +28,17 @@
             </all>
             <admin>
                 <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <zestard_customerattribute translate="title" module="zestard_customerattribute">
+                                        <title>Customer Attribute</title>
+                                    </zestard_customerattribute>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
                     <customer>
                         <children>
                             <customer_attribute translate="title" module="zestard_customerattribute">
