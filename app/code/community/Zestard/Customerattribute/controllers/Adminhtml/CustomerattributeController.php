@@ -169,15 +169,15 @@ class Zestard_Customerattribute_Adminhtml_CustomerattributeController extends Ma
          $data = $this->getRequest()->getPost();
          if ($data) {
              /** @var $session Mage_Admin_Model_Session */
-             $session = Mage::getSingleton('adminhtml/session');
+            $session = Mage::getSingleton('adminhtml/session');
 
-             $redirectBack   = $this->getRequest()->getParam('back', false);
+            $redirectBack   = $this->getRequest()->getParam('back', false);
              /* @var $model Zestard_Customerattribute_Model_Customerattribute */
-             $model = Mage::getModel('zestard_customerattribute/customerattribute');
+            $model = Mage::getModel('zestard_customerattribute/customerattribute');
              /* @var $helper Mage_Catalog_Helper_Product */
-             $helper = Mage::helper('zestard_customerattribute/customerattribute');
+            $helper = Mage::helper('zestard_customerattribute/customerattribute');
 
-             $id = $this->getRequest()->getParam('attribute_id');
+            $id = $this->getRequest()->getParam('attribute_id');
 
              //validate attribute_code
              if (isset($data['attribute_code'])) {
@@ -190,7 +190,6 @@ class Zestard_Customerattribute_Adminhtml_CustomerattributeController extends Ma
                      return;
                  }
              }
-
 
              //validate frontend_input
              if (isset($data['frontend_input'])) {
@@ -250,7 +249,64 @@ class Zestard_Customerattribute_Adminhtml_CustomerattributeController extends Ma
                  $usedInForms[] = 'adminhtml_customer';
              }
 
-             $data['used_in_forms'] = $usedInForms;
+             if (isset($data['checkout_register'])&& $data['checkout_register'] == 1) {
+                 $usedInForms[] = 'checkout_register';
+             }
+
+            if(in_array('checkout_register', $usedInForms)) {
+                $xmlPath = Mage::getBaseDir().DS.'app'.DS.'code'.DS.'community'.DS.'Zestard'.DS.'Customerattribute'.DS.'etc'.DS.'config.xml';
+                $xmlObj = new Varien_Simplexml_Config($xmlPath);
+                $att = $data['attribute_code'];
+                $xmlObj->setNode('global/fieldsets/checkout_onepage_quote/customer_'.$att.'/to_customer',$att);
+                $xmlObj->setNode('global/fieldsets/customer_account/'.$att.'/to_quote','customer_'.$att);
+                $xmlData = $xmlObj->getNode()->asNiceXml();
+                @file_put_contents($xmlPath, $xmlData);
+            } else if ($id != '' && !in_array('checkout_register', $usedInForms)) {
+                $modelCloned = $model;
+                $modelCloned->load($id);
+                $xmlPath = Mage::getBaseDir().DS.'app'.DS.'code'.DS.'community'.DS.'Zestard'.DS.'Customerattribute'.DS.'etc'.DS.'config.xml';
+                $xmlObj = new Varien_Simplexml_Config($xmlPath);
+                $att = $modelCloned->getAttributeCode();
+                $xmlObj->setNode('global/fieldsets/checkout_onepage_quote/customer_'.$att,NULL);
+                $xmlObj->setNode('global/fieldsets/customer_account/'.$att,NULL);
+                $xmlData = $xmlObj->getNode()->asNiceXml();
+                @file_put_contents($xmlPath, $xmlData);
+            }
+
+			
+			/*$usedInForms[] = 'checkout_register';
+			$usedInForms[] = 'customer_register_address';
+			$usedInForms[] = 'checkout_index_index';
+			$usedInForms[] = 'customer_address_edit';
+			$usedInForms[] = 'adminhtml_customer_address';*/
+            $data['used_in_forms'] = $usedInForms;
+            $resource = Mage::getSingleton('core/resource');
+    
+            /**
+             * Retrieve the write connection
+             */
+            $writeConnection = $resource->getConnection('core_write');
+
+            /**
+             * Retrieve our table name
+             */
+            $table = $resource->getTableName('sales/quote');                
+            $attributeDataType = ($data['frontend_input'] == 'date' ? 'date' : 'varchar(255)');
+            /**
+             * Set the new SKU
+             * It is assumed that you are hard coding the new SKU in
+             * If the input is not dynamic, consider using the
+             * Varien_Db_Select object to insert data
+             */  
+
+            $query = "ALTER TABLE `{$table}` ADD `customer_".$data['attribute_code']."` ".$attributeDataType." NOT NULL";
+
+            $ColumnName = "customer_".$data['attribute_code']."";            
+            $collection1 = Mage::getModel('sales/quote')->getCollection();
+            if (!array_key_exists($ColumnName,$collection1->getFirstitem()->getData()))
+            {                
+                $writeConnection->query($query);
+            }
 
              if (is_null($model->getIsUserDefined()) || $model->getIsUserDefined() != 0) {
                  $data['backend_type'] = $model->getBackendTypeByInput($data['frontend_input']);
@@ -320,6 +376,14 @@ class Zestard_Customerattribute_Adminhtml_CustomerattributeController extends Ma
 
             try {
                 $model->delete();
+                $xmlPath = Mage::getBaseDir().DS.'app'.DS.'code'.DS.'community'.DS.'Zestard'.DS.'Customerattribute'.DS.'etc'.DS.'config.xml';
+                $xmlObj = new Varien_Simplexml_Config($xmlPath);
+                $att = $model->getAttributeCode();
+                $xmlObj->setNode('global/fieldsets/checkout_onepage_quote/customer_'.$att,NULL);
+                $xmlObj->setNode('global/fieldsets/customer_account/'.$att,NULL);
+                $xmlData = $xmlObj->getNode()->asNiceXml();
+                @file_put_contents($xmlPath, $xmlData);
+
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('zestard_customerattribute')->__('The customer attribute has been deleted.'));
                 $this->_redirect('*/*/');

@@ -46,17 +46,6 @@
                             </customer_attribute>
                         </children>
                     </customer>
-                    <system>
-                        <children>
-                            <config>
-                                <children>
-                                    <zestard>
-                                        <title>Zestard Extension</title>
-                                    </zestard>
-                                </children>
-                            </config>
-                        </children>
-                    </system>
                 </children>
             </admin>
         </resources>

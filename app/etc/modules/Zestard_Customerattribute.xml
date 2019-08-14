@@ -11,6 +11,9 @@
         <Zestard_Customerattribute>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+                <Mage_Checkout />
+            </depends>
         </Zestard_Customerattribute>
     </modules>
 </config>

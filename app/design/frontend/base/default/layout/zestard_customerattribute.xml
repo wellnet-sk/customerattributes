@@ -41,4 +41,11 @@
             <block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml"/>
         </reference>
     </customer_account_edit>
+    <checkout_onepage_index>
+        <reference name="checkout.onepage.billing">
+            <action method="setTemplate">
+                <template>zestard/customerattribute/checkout/onepage/billing.phtml</template>
+            </action>
+        </reference>
+    </checkout_onepage_index>
 </layout>

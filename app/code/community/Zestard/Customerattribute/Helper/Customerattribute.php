@@ -129,6 +129,16 @@ class Zestard_Customerattribute_Helper_Customerattribute extends Mage_Core_Helpe
          return false;
     }
 
+    public function isAttribureForCheckoutRegister($attributeCode)
+    {
+        $attribute   = Mage::getSingleton('eav/config')->getAttribute('customer', $attributeCode);
+        $usedInForms = $attribute->getUsedInForms();
+        if (in_array('checkout_register', $usedInForms)) {
+            return true;
+        }
+         return false;
+    }
+
     /**
      * Get store id
      *

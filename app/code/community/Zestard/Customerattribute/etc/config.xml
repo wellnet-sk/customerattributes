@@ -1,100 +1,91 @@
-<?xml version="1.0"?>
-<!--
-/**
- * Configuration file
- *
- * @category   Mage
- * @package    Zestard_Customerattribute
- * @author     Zestard Magento Team
- */
--->
 <config>
-    <modules>
-        <Zestard_Customerattribute>
-            <version>0.1.0</version>
-        </Zestard_Customerattribute>
-    </modules>
-
-    <global>
-        <models>
+   <modules>
+      <Zestard_Customerattribute>
+         <version>1.0.2</version>
+      </Zestard_Customerattribute>
+   </modules>
+   <global>
+      <models>
+         <zestard_customerattribute>
+            <class>Zestard_Customerattribute_Model</class>
+         </zestard_customerattribute>
+      </models>
+      <helpers>
+         <zestard_customerattribute>
+            <class>Zestard_Customerattribute_Helper</class>
+         </zestard_customerattribute>
+      </helpers>
+      <blocks>
+         <zestard_customerattribute>
+            <class>Zestard_Customerattribute_Block</class>
+         </zestard_customerattribute>
+      </blocks>
+      <fieldsets>
+         <checkout_onepage_quote>            
+         </checkout_onepage_quote>
+         <customer_account>            
+         </customer_account>
+      </fieldsets>
+   </global>
+   <frontend>
+      <layout>
+         <updates>
             <zestard_customerattribute>
-                <class>Zestard_Customerattribute_Model</class>
+               <file>zestard_customerattribute.xml</file>
             </zestard_customerattribute>
-        </models>
-        <helpers>
+         </updates>
+      </layout>
+      <translate>
+         <modules>
             <zestard_customerattribute>
-                <class>Zestard_Customerattribute_Helper</class>
+               <files>
+                  <default>Zestard_Customerattribute.csv</default>
+               </files>
             </zestard_customerattribute>
-        </helpers>
-        <blocks>
+         </modules>
+      </translate>
+   </frontend>
+   <adminhtml>
+      <layout>
+         <updates>
             <zestard_customerattribute>
-                <class>Zestard_Customerattribute_Block</class>
+               <file>zestard_customerattribute.xml</file>
             </zestard_customerattribute>
-        </blocks>
-    </global>
-
-    <frontend>
-        <layout>
-            <updates>
-                <zestard_customerattribute>
-                        <file>zestard_customerattribute.xml</file>
-                </zestard_customerattribute>
-            </updates>
-        </layout>
-         <translate>
-            <modules>
-                <zestard_customerattribute>
-                    <files>
-                        <default>Zestard_Customerattribute.csv</default>
-                    </files>
-                </zestard_customerattribute>
-            </modules>
-        </translate>
-    </frontend>
-
-    <adminhtml>
-        <layout>
-            <updates>
-                <zestard_customerattribute>
-                    <file>zestard_customerattribute.xml</file>
-                </zestard_customerattribute>
-            </updates>
-        </layout>
-        <translate>
-            <modules>
-                <zestard_customerattribute>
-                    <files>
-                        <default>zestard_customerattribute.csv</default>
-                    </files>
-                </zestard_customerattribute>
-            </modules>
-        </translate>
-    </adminhtml>
-
-    <admin>
-        <routers>
-            <adminhtml>
-                <args>
-                    <modules>
-                        <zestard_customerattribute after="Mage_Adminhtml">Zestard_Customerattribute_Adminhtml</zestard_customerattribute>
-                    </modules>
-                </args>
-            </adminhtml>
-        </routers>
-    </admin>
-    <!-- Zestard_Customerattribute_Adminhtml indicates the path of the admin controller-->
-    <default>
-        <general>
-            <validator_data>
-                <input_types>
-                    <text>text</text>
-                    <textarea>textarea</textarea>
-                    <date>date</date>
-                    <boolean>boolean</boolean>
-                    <multiselect>multiselect</multiselect>
-                    <select>select</select>
-                </input_types>
-            </validator_data>
-        </general>
-    </default>
+         </updates>
+      </layout>
+      <translate>
+         <modules>
+            <zestard_customerattribute>
+               <files>
+                  <default>zestard_customerattribute.csv</default>
+               </files>
+            </zestard_customerattribute>
+         </modules>
+      </translate>
+   </adminhtml>
+   <admin>
+      <routers>
+         <adminhtml>
+            <args>
+               <modules>
+                  <zestard_customerattribute after="Mage_Adminhtml">Zestard_Customerattribute_Adminhtml</zestard_customerattribute>
+               </modules>
+            </args>
+         </adminhtml>
+      </routers>
+   </admin>
+   <default>
+      <general>
+         <validator_data>
+            <input_types>
+               <text>text</text>
+               <textarea>textarea</textarea>
+               <date>date</date>
+               <boolean>boolean</boolean>
+               <multiselect>multiselect</multiselect>
+               <select>select</select>
+            </input_types>
+         </validator_data>
+      </general>
+   </default>
 </config>

@@ -61,6 +61,15 @@ class  Zestard_Customerattribute_Block_Adminhtml_Customerattribute_Edit_Tab_Main
             'note' => Mage::helper('zestard_customerattribute')->__('Show on the Admin Manage Customers Add and Edit customer Page'),
         ));
 
+        $fieldset->addField('checkout_register', 'checkbox', array(
+            'name' => 'checkout_register',
+            'checked'   => in_array('checkout_register', $usedInForms) ? true : false,
+            'value'     => '1',
+            'label' => Mage::helper('zestard_customerattribute')->__('Show on the Checkout Billing'),
+            'title' => Mage::helper('zestard_customerattribute')->__('Show on the Checkout Billing'),
+            'note' => Mage::helper('zestard_customerattribute')->__('Show on the Checkout Billing'),
+        ));
+
         return $this;
     }
 }
