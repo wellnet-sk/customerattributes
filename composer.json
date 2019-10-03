@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/customerattributes",
+    "name": "openmage-module-fostering\/customerattributes",
     "type": "magento-module",
-    "license": "OSL-v3.0",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Customer Attributes - Extra Fields for Registration Form",
     "authors": [
