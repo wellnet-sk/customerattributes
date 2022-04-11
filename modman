@@ -1,0 +1,6 @@
+app/code/community/Zestard/Customerattribute/ app/code/community/Zestard/Customerattribute/
+app/design/adminhtml/default/default/layout/zestard_customerattribute.xml app/design/adminhtml/default/default/layout/zestard_customerattribute.xml
+app/design/adminhtml/default/default/template/zestard_customerattribute/ app/design/adminhtml/default/default/template/zestard_customerattribute/
+app/etc/modules/Zestard_Customerattribute.xml app/etc/modules/Zestard_Customerattribute.xml
+app/locale/en_US/Zestard_Customerattribute.csv app/locale/en_US/Zestard_Customerattribute.csv
+skin/adminhtml/default/default/images/customerattribute/ skin/adminhtml/default/default/images/customerattribute/
